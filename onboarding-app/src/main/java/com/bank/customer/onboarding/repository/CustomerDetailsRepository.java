@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 /**
  * The interface Customer details repository.
  *
- * @author siddharthkorgaonkar  18/06/2023
+ * @author siddharthkorgaonkar 18/06/2023
  */
 public interface CustomerDetailsRepository extends JpaRepository<CustomerDetails, Long> {
 
@@ -17,4 +17,12 @@ public interface CustomerDetailsRepository extends JpaRepository<CustomerDetails
      * @return the customer details
      */
     CustomerDetails findByUsername(String username);
+
+    /**
+     * Find by email customer details.
+     *
+     * @param email the email
+     * @return the customer details
+     */
+    CustomerDetails findByEmail(String email);
 }

@@ -15,7 +15,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 /**
  * The type Generic exception handler.
  *
- * @author siddharthkorgaonkar  17/06/2023
+ * @author siddharthkorgaonkar 17/06/2023
  */
 @Slf4j
 @ControllerAdvice
@@ -60,6 +60,19 @@ public class GenericExceptionHandler extends ResponseEntityExceptionHandler {
         log.error("Exception: [{}]", exception.getMessage());
         ValidationResult validationResult = buildErrorResponse(ErrorCodeUtil.OVERVIEW_NOT_FOUND);
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(validationResult);
+    }
+
+    /**
+     * Not found response entity.
+     *
+     * @param exception the exception
+     * @return the response entity
+     */
+    @ExceptionHandler(value = {CustomerAlreadyExistException.class})
+    protected ResponseEntity<ValidationResult> notFound(CustomerAlreadyExistException exception) {
+        log.error("Exception: [{}]", exception.getMessage());
+        ValidationResult validationResult = buildErrorResponse(ErrorCodeUtil.CUSTOMER_ALREADY_EXIST);
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(validationResult);
     }
 
     /**

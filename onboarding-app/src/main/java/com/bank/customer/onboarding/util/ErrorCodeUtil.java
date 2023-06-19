@@ -4,7 +4,7 @@ package com.bank.customer.onboarding.util;
 /**
  * The enum Error code util.
  *
- * @author siddharthkorgaonkar  17/06/2023
+ * @author siddharthkorgaonkar 17/06/2023
  */
 public enum ErrorCodeUtil {
 
@@ -31,7 +31,12 @@ public enum ErrorCodeUtil {
     /**
      * The Overview not found.
      */
-    OVERVIEW_NOT_FOUND("ERR_004", "Account-Overview not found for customer");
+    OVERVIEW_NOT_FOUND("ERR_004", "Account-Overview not found for customer"),
+
+    /**
+     * The Customer already exist.
+     */
+    CUSTOMER_ALREADY_EXIST("ERR_005", "Customer already exist with requested email");
 
     private final String errorCode;
     private final String message;

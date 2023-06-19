@@ -64,7 +64,8 @@ paths:
                 $ref: '#/components/schemas/RegisterResponse'
         400:
           $ref: "#/components/responses/BadRequest"
-
+        409:
+          $ref: "#/components/responses/Conflct"
         500:
           $ref: "#/components/responses/InternalServerError"
 
@@ -237,7 +238,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ValidationResult'
-
+    Conflict:
+      description: The server cannot or will not process the request as it is conflict with requested resource.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ValidationResult'
 
     Forbidden:
       description: The server understood the request but refuses to authorize it.
@@ -249,3 +255,4 @@ components:
       description: The request has not been applied because it lacks valid authentication
         credentials for the target resource.
       content: { }
+

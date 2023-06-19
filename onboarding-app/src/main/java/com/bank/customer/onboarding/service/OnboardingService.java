@@ -1,6 +1,7 @@
 package com.bank.customer.onboarding.service;
 
 import com.bank.customer.onboarding.config.ApplicaitonProperties;
+import com.bank.customer.onboarding.exception.CustomerAlreadyExistException;
 import com.bank.customer.onboarding.model.onboarding.OnboardingRequestDetails;
 import com.bank.customer.onboarding.model.onboarding.OnboardingResponseDetails;
 import com.bank.customer.onboarding.repository.CustomerAccountOverviewRepository;
@@ -22,7 +23,7 @@ import static com.bank.customer.onboarding.util.OnboardingUtil.*;
 /**
  * The type Onboarding service.
  *
- * @author siddharthkorgaonkar  18/06/2023
+ * @author siddharthkorgaonkar 18/06/2023
  */
 @RequiredArgsConstructor
 @Slf4j
@@ -66,15 +67,37 @@ public class OnboardingService {
         String iban = onboardingUtil.createIBAN(cust.getCountry());
         String gender = StringUtils.hasText(cust.getGender())?cust.getGender():"NOT_PROVIDED";
 
+        checkIfCustomerAlreadyExist(cust);
+
         // Save customer details
-        CustomerDetails customer = new CustomerDetails(cust.getEmail(),username, cust.getAge(), gender, cust.getCountry(), address, iban,"ACTIVE");
-        CustomerDetails  newCustomer =customerDetailsRepository.save(customer);
-        log.info("Customer created with username [{}]", newCustomer.getUsername());
+        CustomerDetails newCustomer = saveCustomerDetails(cust, username, address, iban, gender);
 
         // Save customer's account overview
+        saveCustomerAccountOverview(username, iban);
+
+        return OnboardingResponseDetails.builder().password(applicaitonProperties.getPassword()).username(newCustomer.getUsername()).build();
+    }
+
+    private void checkIfCustomerAlreadyExist(OnboardingRequestDetails cust) {
+        CustomerDetails existingCustomer = customerDetailsRepository.findByEmail(cust.getEmail());
+        if(null != existingCustomer){
+            throw new CustomerAlreadyExistException(cust.getEmail());
+        }
+    }
+
+    private void saveCustomerAccountOverview(String username, String iban) {
+
         CustomerAccountOverview overview = new CustomerAccountOverview(username,BALANCE,ACCOUNT_TYPE, iban, CURRENCY, new Timestamp(System.currentTimeMillis()));
         overviewRepository.save(overview);
         log.info("Customer Account Overview created");
-        return OnboardingResponseDetails.builder().password(applicaitonProperties.getPassword()).username(newCustomer.getUsername()).build();
+    }
+
+
+    private CustomerDetails saveCustomerDetails(OnboardingRequestDetails cust, String username, String address, String iban, String gender) {
+
+        CustomerDetails customer = new CustomerDetails(cust.getEmail(), username, cust.getAge(), gender, cust.getCountry(), address, iban,"ACTIVE");
+        CustomerDetails  newCustomer = customerDetailsRepository.save(customer);
+        log.info("Customer created with username [{}]", newCustomer.getUsername());
+        return newCustomer;
     }
 }
