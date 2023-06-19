@@ -16,7 +16,7 @@ servers:
 
 paths:
 
-  /bank/v1/:
+  /bank/v1/logon:
     post:
       tags:
         - Login
