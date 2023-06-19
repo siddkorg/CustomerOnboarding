@@ -6,7 +6,7 @@ CREATE TABLE customer_details(
     id INT AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(255) DEFAULT '',
     username VARCHAR(255) NOT NULL,
-    age INT DEFAULT 0,
+    dob  VARCHAR(255) NOT NULL,
     gender VARCHAR(255) NOT NULL,
     country VARCHAR(255) NOT NULL,
     address VARCHAR(255) NOT NULL,
@@ -29,6 +29,6 @@ INSERT INTO customer_account_overview(username, balance, type, account, currency
 INSERT INTO customer_account_overview(username, balance, type, account, currency)  VALUES ("DravRS1687",4000.34,"saving","BE42XYZA16871607","EUR");
 INSERT INTO customer_account_overview(username, balance, type, account, currency)  VALUES ("ChauNC1687",9900.34,"saving","DE22XYZA16871674419161","EUR");
 
-INSERT INTO customer_details(email, username, age, gender, country, address, account, status)VALUES ("sidd.korg@gmail.com","KorgS01687",19, "NOT_PROVIDED","NL", "21-1181CD", "NL95XYZA1687160664","ACTIVE");
-INSERT INTO customer_details(email, username, age, gender, country, address, account, status)VALUES ("rsdravid@gmail.com","DravRS1687",20, "M","BE", "45-1312PC", "BE42XYZA16871607","ACTIVE");
-INSERT INTO customer_details(email, username, age, gender, country, address, account, status)VALUES ("nc@gmail.com","ChauNC1687", 63, "F","DE", "1-1181GP", "DE22XYZA16871674419161","ACTIVE");
+INSERT INTO customer_details(email, username, dob, gender, country, address, account, status)VALUES ("sidd.korg@gmail.com","KorgS01687","1987-04-12", "NOT_PROVIDED","NL", "21-1181CD", "NL95XYZA1687160664","ACTIVE");
+INSERT INTO customer_details(email, username, dob, gender, country, address, account, status)VALUES ("rsdravid@gmail.com","DravRS1687","1992-09-24", "M","BE", "45-1312PC", "BE42XYZA16871607","ACTIVE");
+INSERT INTO customer_details(email, username, dob, gender, country, address, account, status)VALUES ("nc@gmail.com","ChauNC1687", "1982-04-22", "F","DE", "1-1181GP", "DE22XYZA16871674419161","ACTIVE");

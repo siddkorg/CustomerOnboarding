@@ -65,7 +65,7 @@ paths:
         400:
           $ref: "#/components/responses/BadRequest"
         409:
-          $ref: "#/components/responses/Conflct"
+          $ref: "#/components/responses/Conflict"
         500:
           $ref: "#/components/responses/InternalServerError"
 
@@ -147,24 +147,28 @@ components:
       title: Registration
       type: object
       properties:
+
         initials:
           type: string
           description: Initials of the name
           example: S.D
+
         familyName:
           type: string
           description: Family name
           example: Jackson
+
         email:
           type: string
           description: email
           example: jack@domain.com
           pattern: '^\d{3}-\d{2}-\d{4}$'
 
-        age:
-          type: integer
-          description: Age of the customer. Minimum age should be 18
-          example: 25
+        dob:
+          type: string
+          format: date
+          description: Date of birth of customer
+          example: "2023-06-19"
 
         gender:
           $ref: '#/components/schemas/gender'
@@ -255,4 +259,5 @@ components:
       description: The request has not been applied because it lacks valid authentication
         credentials for the target resource.
       content: { }
+
 

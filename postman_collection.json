@@ -9,7 +9,7 @@
 			"name": "Login scenarios",
 			"item": [
 				{
-					"name": "1. Login - success DravRS1687",
+					"name": "1.1 Login - success - {username = DravRS1687}",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -41,7 +41,7 @@
 					"response": []
 				},
 				{
-					"name": "1. Login - success - KorgS01687",
+					"name": "1.2 Login - success - { username = KorgS01687 }",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -73,7 +73,7 @@
 					"response": []
 				},
 				{
-					"name": "1. Login - wrong password  - 401",
+					"name": "1.3 Login - wrong password  - 401",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -105,7 +105,7 @@
 					"response": []
 				},
 				{
-					"name": "1. Login - invalid user - 401",
+					"name": "1.4 Login - invalid user - 401",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -163,7 +163,7 @@
 			"name": "Registration scenarios",
 			"item": [
 				{
-					"name": "2. Registration ",
+					"name": "2.1 Registration - success",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -175,7 +175,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"initials\": \"NCsss\",\n    \"familyName\": \"Chaudharisdf\",\n    \"email\": \"ncsdfsd@gmail.com\",\n    \"age\": 19,\n    \"gender\": \"O\",\n    \"country\": \"DE\",\n    \"postCode\": \"1312PC\",\n    \"houseNo\": \"35\"\n   \n}"
+							"raw": "{\n\t\"initials\": \"NCsss\",\n    \"familyName\": \"Chaudharisdf\",\n    \"email\": \"ncsdfsd@gmail.com\",\n    \"dob\": \"1987-06-19\",\n    \"gender\": \"O\",\n    \"country\": \"DE\",\n    \"postCode\": \"1312PC\",\n    \"houseNo\": \"35\"\n   \n}"
 						},
 						"url": {
 							"raw": "http://localhost:6868/bank/v1/customer/register",
@@ -191,12 +191,12 @@
 								"register"
 							]
 						},
-						"description": "This API complete automatic registration process to open account in bank"
+						"description": "Register the customer"
 					},
 					"response": []
 				},
 				{
-					"name": "2. Registration - age restriction",
+					"name": "2.2 Registration  - 409 ( same request as 2.2)",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -208,7 +208,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"initials\": \"S.D\",\n    \"familyName\": \"Korgaonkar\",\n    \"email\": \"sidd.korg@gmail.com\",\n    \"age\": 14,\n    \"country\": \"DE\",\n    \"postCode\": \"1312PC\",\n    \"houseNo\": \"35\"\n   \n}"
+							"raw": "{\n\t\"initials\": \"NCsss\",\n    \"familyName\": \"Chaudharisdf\",\n    \"email\": \"ncsdfsd@gmail.com\",\n    \"dob\": \"1987-08-11\",\n    \"gender\": \"O\",\n    \"country\": \"DE\",\n    \"postCode\": \"1312PC\",\n    \"houseNo\": \"35\"\n   \n}"
 						},
 						"url": {
 							"raw": "http://localhost:6868/bank/v1/customer/register",
@@ -224,12 +224,12 @@
 								"register"
 							]
 						},
-						"description": "onboard customer with his details"
+						"description": "Cannot register customer with same email "
 					},
 					"response": []
 				},
 				{
-					"name": "2. Registration - country restriction",
+					"name": "2.3 Registration - 400 - age restriction",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -241,7 +241,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"initials\": \"Johny\",\n    \"familyName\": \"Jackson\",\n    \"email\": \"johny@gmail.com\",\n    \"age\": 49,\n    \"country\": \"IN\", \n    \"postCode\": \"1312PC\",\n    \"houseNo\": \"35\"\n   \n}"
+							"raw": "{\n\t\"initials\": \"S.D\",\n    \"familyName\": \"Korgaonkar\",\n    \"email\": \"sidd.korg@gmail.com\",\n    \"dob\": \"1987-06-19\",\n    \"country\": \"DE\",\n    \"postCode\": \"1312PC\",\n    \"houseNo\": \"35\"\n   \n}"
 						},
 						"url": {
 							"raw": "http://localhost:6868/bank/v1/customer/register",
@@ -257,7 +257,40 @@
 								"register"
 							]
 						},
-						"description": "This is the login API to validate the with dummy 'superSecretPassword' and "
+						"description": "Age of the customer must be above 18"
+					},
+					"response": []
+				},
+				{
+					"name": "2.4  Registration -  400 -country restriction",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"initials\": \"Johny\",\n    \"familyName\": \"Jackson\",\n    \"email\": \"johny@gmail.com\",\n    \"dob\": \"1982-09-09\",\n    \"country\": \"IN\", \n    \"postCode\": \"1312PC\",\n    \"houseNo\": \"35\"\n   \n}"
+						},
+						"url": {
+							"raw": "http://localhost:6868/bank/v1/customer/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6868",
+							"path": [
+								"bank",
+								"v1",
+								"customer",
+								"register"
+							]
+						},
+						"description": "Country must be NL/DE/BE "
 					},
 					"response": []
 				}
@@ -287,7 +320,7 @@
 			"name": "Overview scenarios",
 			"item": [
 				{
-					"name": "3. Overview of account - DravRS1687",
+					"name": "3.1 Overview of account - {username=DravRS1687}",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -323,7 +356,7 @@
 					"response": []
 				},
 				{
-					"name": "3. Overview of account -KorgS01687",
+					"name": "3.2 Overview of account - {username =KorgS01687}",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -359,7 +392,7 @@
 					"response": []
 				},
 				{
-					"name": "3. Overview of account - random dummy username",
+					"name": "3.3 Overview of account - {username = invalid_user }",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -390,7 +423,7 @@
 								"dummy"
 							]
 						},
-						"description": "Failure scenario where user doesn't exit"
+						"description": "Failure scenario where user doesn't exit in database"
 					},
 					"response": []
 				}

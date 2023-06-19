@@ -18,7 +18,7 @@ public class OnboardingRequestDetails {
 
     private String email;
 
-    private int age;
+    private String dob;
 
     private String gender;
 

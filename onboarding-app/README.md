@@ -18,11 +18,23 @@ Specification can be found in onboarding.yaml file
 
 a. Customer must be above 18 years old
 
-b. Support of these API for customers living in country Nederland, Germany, Belgium 
+b. Support of these API only for customers living in country Nederland, Germany, Belgium 
 
-These business rules can easily udpated through application.properties
+These business rules can easily updated through 'application.properties'
 
-### 3. Extended scope
+### 3. Error Code
+| Error    | Description | Http Code|
+| --- | --- | ---|
+| ERR_000 | invalid inputs | 400|
+| ERR_001 | unauthorized | 401 |
+| ERR_002 | age restriction | 400 |
+| ERR_003 | country restriction | 400 |
+| ERR_004 | overview not found | 404 |
+| ERR_005 | customer exist| 409 |
+| ERR_999 | unknown error | 500|
+
+
+### 4. Extended scope
 a. Actual security to provide auth token to customer/ MFA
 
 b. Get multipart details of customer eg. photo of customer, id proof etc. and provide email confirmation
@@ -37,7 +49,7 @@ e. Normalized Db tables.
 
 
 
-### 4. Appraoch taken
+### 5. Appraoch taken
 a. Brainstorm on requirements w.r.t scalibility & flexibility 
 
 b. Finalize tech-stack eg springboot, mvn, docker, mysql -JPA

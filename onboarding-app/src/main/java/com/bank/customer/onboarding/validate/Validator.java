@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Arrays;
 import java.util.regex.Pattern;
 
@@ -57,6 +59,9 @@ public class Validator {
     public void validateOnboardingDetails(OnboardingRequestDetails c)  {
 
         String method = "onboarding";
+        LocalDate date;
+        Period period;
+        LocalDate now =  LocalDate.now();
 
         if(!StringUtils.hasText(c.getInitials())  || !StringUtils.hasText(c.getFamilyName()) || !StringUtils.hasText(c.getHouseNo()) || !StringUtils.hasText(c.getPostCode())  ){
             log.error("Invalid name or address");
@@ -68,8 +73,17 @@ public class Validator {
             throw new InvalidInputException(method);
         }
 
-        if( (c.getAge() == 0) ||c.getAge()<applicaitonProperties.getMinimumAge() ){
-            log.error("Invalid age");
+        try{
+             date = LocalDate.parse(c.getDob());
+             period = Period.between(date, now);
+        }
+        catch (Exception e){
+            log.error("Invalid date of birth [{}]",c.getDob());
+            throw new InvalidInputException(method);
+        }
+
+        if(!StringUtils.hasText(c.getDob()) || period.getYears() < applicaitonProperties.getMinimumAge() ){
+            log.error("Customer not allowed due  age");
             throw new BusinessValidationException(OnboardingUtil.AGE_VALIDATION);
         }
 

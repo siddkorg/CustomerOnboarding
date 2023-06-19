@@ -1,5 +1,6 @@
 package com.bank.customer.onboarding.util;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -7,6 +8,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * @author siddharthkorgaonkar
@@ -30,5 +32,15 @@ public class OnboardingUtilTest {
 
         assertEquals(expectedIbanSize, onboardingUtil.createIBAN(country).length());
 
+    }
+
+    @Test
+    void test_unique_name(){
+        assertNotNull(onboardingUtil.getUniqueUserName("Korgaonakr","S.D"));
+    }
+
+    @Test
+    void test_address(){
+        assertEquals("45_1312WE_NL", onboardingUtil.getAddress("45","1312WE", "NL"));
     }
 }

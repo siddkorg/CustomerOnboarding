@@ -38,8 +38,6 @@ public class OverviewService {
         if(null == customerAccountOverview){
             throw new NotFoundException(username);
         }
-
         return AccountOverviewMapper.MAPPER.toMAP(customerAccountOverview);
-
     }
 }

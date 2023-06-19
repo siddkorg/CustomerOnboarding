@@ -38,6 +38,7 @@ docker exec -it customeronboarding_mysqldb_1 mysql -uroot -p123456 -D onboarding
 
 docker exec -it customeronboarding_mysqldb_1 mysql -uroot -p123456 -D onboarding -e "SELECT * FROM customer_account_overview;"
 ```
+![plot](./db_table.jpg)
 
 ## 3. Postman setup
 

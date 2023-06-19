@@ -89,13 +89,13 @@ public class OnboardingService {
 
         CustomerAccountOverview overview = new CustomerAccountOverview(username,BALANCE,ACCOUNT_TYPE, iban, CURRENCY, new Timestamp(System.currentTimeMillis()));
         overviewRepository.save(overview);
-        log.info("Customer Account Overview created");
+        log.info("Customer Account-Overview created");
     }
 
 
     private CustomerDetails saveCustomerDetails(OnboardingRequestDetails cust, String username, String address, String iban, String gender) {
 
-        CustomerDetails customer = new CustomerDetails(cust.getEmail(), username, cust.getAge(), gender, cust.getCountry(), address, iban,"ACTIVE");
+        CustomerDetails customer = new CustomerDetails(cust.getEmail(), username, cust.getDob(), gender, cust.getCountry(), address, iban,"ACTIVE");
         CustomerDetails  newCustomer = customerDetailsRepository.save(customer);
         log.info("Customer created with username [{}]", newCustomer.getUsername());
         return newCustomer;
