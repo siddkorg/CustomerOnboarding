@@ -1,0 +1,427 @@
+{
+	"info": {
+		"_postman_id": "a660d091-9d3d-4245-96de-f71e767a39e7",
+		"name": "_Onboarding of Customer to the bank",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login scenarios",
+			"item": [
+				{
+					"name": "1. Login - success DravRS1687",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"DravRS1687\",\n    \"password\": \"ThisIsTheOnlyPassword\"\n\n}"
+						},
+						"url": {
+							"raw": "http://localhost:6868/bank/logon",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6868",
+							"path": [
+								"bank",
+								"logon"
+							]
+						},
+						"description": "This is the login API to validate user against dummy 'superSecretPassword'  \n\nuser can get after successful registration"
+					},
+					"response": []
+				},
+				{
+					"name": "1. Login - success - KorgS01687",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"KorgS01687\",\n    \"password\": \"ThisIsTheOnlyPassword\"\n\n}"
+						},
+						"url": {
+							"raw": "http://localhost:6868/bank/logon",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6868",
+							"path": [
+								"bank",
+								"logon"
+							]
+						},
+						"description": "This is the login API to validate user against dummy 'superSecretPassword'  \n\nuser can get after successful registration"
+					},
+					"response": []
+				},
+				{
+					"name": "1. Login - wrong password  - 401",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"DravRS1687\",\n    \"password\": \"ThisIsTheOnlyPassword_wrong\"\n\n}"
+						},
+						"url": {
+							"raw": "http://localhost:6868/bank/logon",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6868",
+							"path": [
+								"bank",
+								"logon"
+							]
+						},
+						"description": "Invalid password"
+					},
+					"response": []
+				},
+				{
+					"name": "1. Login - invalid user - 401",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"invalidUser\",\n    \"password\": \"ThisIsTheOnlyPassword\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:6868/bank/logon",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6868",
+							"path": [
+								"bank",
+								"logon"
+							]
+						},
+						"description": "Invalid User"
+					},
+					"response": []
+				}
+			],
+			"description": "Existing users can login to the bank",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Registration scenarios",
+			"item": [
+				{
+					"name": "2. Registration ",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"initials\": \"NCsss\",\n    \"familyName\": \"Chaudharisdf\",\n    \"email\": \"ncsdfsd@gmail.com\",\n    \"age\": 19,\n    \"gender\": \"O\",\n    \"country\": \"DE\",\n    \"postCode\": \"1312PC\",\n    \"houseNo\": \"35\"\n   \n}"
+						},
+						"url": {
+							"raw": "http://localhost:6868/bank/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6868",
+							"path": [
+								"bank",
+								"register"
+							]
+						},
+						"description": "This API complete automatic registration process to open account in bank"
+					},
+					"response": []
+				},
+				{
+					"name": "2. Registration - age restriction",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"initials\": \"S.D\",\n    \"familyName\": \"Korgaonkar\",\n    \"email\": \"sidd.korg@gmail.com\",\n    \"age\": 14,\n    \"country\": \"DE\",\n    \"postCode\": \"1312PC\",\n    \"houseNo\": \"35\"\n   \n}"
+						},
+						"url": {
+							"raw": "http://localhost:6868/bank/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6868",
+							"path": [
+								"bank",
+								"register"
+							]
+						},
+						"description": "onboard customer with his details"
+					},
+					"response": []
+				},
+				{
+					"name": "2. Registration - country restriction",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"initials\": \"Johny\",\n    \"familyName\": \"Jackson\",\n    \"email\": \"johny@gmail.com\",\n    \"age\": 49,\n    \"country\": \"IN\", \n    \"postCode\": \"1312PC\",\n    \"houseNo\": \"35\"\n   \n}"
+						},
+						"url": {
+							"raw": "http://localhost:6868/bank/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6868",
+							"path": [
+								"bank",
+								"register"
+							]
+						},
+						"description": "This is the login API to validate the with dummy 'superSecretPassword' and "
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Overview scenarios",
+			"item": [
+				{
+					"name": "3. Overview of account - DravRS1687",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:6868/bank/overview/DravRS1687",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6868",
+							"path": [
+								"bank",
+								"overview",
+								"DravRS1687"
+							]
+						},
+						"description": "Get overview of account"
+					},
+					"response": []
+				},
+				{
+					"name": "3. Overview of account -KorgS01687",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:6868/bank/overview/KorgS01687",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6868",
+							"path": [
+								"bank",
+								"overview",
+								"KorgS01687"
+							]
+						},
+						"description": "Get overview of account"
+					},
+					"response": []
+				},
+				{
+					"name": "3. Overview of account - random dummy username",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"initials\": \"S.D\",\n    \"familyName\": \"Korgaonkar\",\n    \"email\": \"sidd.korg@gmail.com\",\n    \"age\": 19,\n    \"country\": \"NL\",\n    \"postCode\": \"1312PC\",\n    \"houseNo\": \"35\"\n   \n}"
+						},
+						"url": {
+							"raw": "http://localhost:6868/bank/overview/dummy",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6868",
+							"path": [
+								"bank",
+								"overview",
+								"dummy"
+							]
+						},
+						"description": "Failure scenario where user doesn't exit"
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

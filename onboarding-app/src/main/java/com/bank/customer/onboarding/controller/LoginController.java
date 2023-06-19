@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
  * @author siddharthkorgaonkar  18/06/2023
  */
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/bank")
 @RequiredArgsConstructor
 public class LoginController {
 

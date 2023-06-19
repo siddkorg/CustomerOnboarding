@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
  * @author siddharthkorgaonkar  18/06/2023
  */
 @RestController
-@RequestMapping("/api/overview")
+@RequestMapping("/bank/overview")
 @RequiredArgsConstructor
 public class OverviewController {
 
