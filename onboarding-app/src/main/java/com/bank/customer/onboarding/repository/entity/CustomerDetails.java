@@ -5,6 +5,9 @@ import lombok.RequiredArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
 
+/**
+ * The type Customer details.
+ */
 @Data
 @Entity
 @Table(name = "customer_details", schema="onboarding")
@@ -39,6 +42,18 @@ public class CustomerDetails implements Serializable {
 	@Column(name = "status")
 	private String status;
 
+	/**
+	 * Instantiates a new Customer details.
+	 *
+	 * @param email    the email
+	 * @param username the username
+	 * @param age      the age
+	 * @param gender   the gender
+	 * @param country  the country
+	 * @param address  the address
+	 * @param account  the account
+	 * @param status   the status
+	 */
 	public CustomerDetails( String email, String username, int age, String gender,String country, String address, String account, String status) {
 		this.email = email;
 		this.username = username;

@@ -4,11 +4,10 @@ import lombok.Data;
 
 import java.io.Serializable;
 
-
-
 /**
- * @author siddharthkorgaonkar
- * 18/06/2023
+ * The type Overview response details.
+ *
+ * @author siddharthkorgaonkar  18/06/2023
  */
 @Data
 public class OverviewResponseDetails implements Serializable {
@@ -17,5 +16,6 @@ public class OverviewResponseDetails implements Serializable {
     private String accountType;
     private String currency;
     private Double balance;
+    private String accountCreationTime;
 
 }

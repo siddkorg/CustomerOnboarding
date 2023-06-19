@@ -20,7 +20,8 @@ CREATE TABLE customer_account_overview(
     balance double(11,2) DEFAULT NULL,
     type VARCHAR(255) NOT NULL,
     account VARCHAR(255) NOT NULL,
-    currency VARCHAR(255) NOT NULL
+    currency VARCHAR(255) NOT NULL,
+    datetime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 )ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Pre requisite table created for account overview';
 
 
@@ -28,6 +29,6 @@ INSERT INTO customer_account_overview(username, balance, type, account, currency
 INSERT INTO customer_account_overview(username, balance, type, account, currency)  VALUES ("DravRS1687",4000.34,"saving","BE42XYZA16871607","EUR");
 INSERT INTO customer_account_overview(username, balance, type, account, currency)  VALUES ("ChauNC1687",9900.34,"saving","DE22XYZA16871674419161","EUR");
 
-INSERT INTO customer_details(email, username, age, gender, country, address, account, status) VALUES ("sidd.korg@gmail.com","KorgS01687",19, "NOT_PROVIDED","NL", "21-1181CD", "NL95XYZA1687160664","ACTIVE");
+INSERT INTO customer_details(email, username, age, gender, country, address, account, status)VALUES ("sidd.korg@gmail.com","KorgS01687",19, "NOT_PROVIDED","NL", "21-1181CD", "NL95XYZA1687160664","ACTIVE");
 INSERT INTO customer_details(email, username, age, gender, country, address, account, status)VALUES ("rsdravid@gmail.com","DravRS1687",20, "M","BE", "45-1312PC", "BE42XYZA16871607","ACTIVE");
 INSERT INTO customer_details(email, username, age, gender, country, address, account, status)VALUES ("nc@gmail.com","ChauNC1687", 63, "F","DE", "1-1181GP", "DE22XYZA16871674419161","ACTIVE");

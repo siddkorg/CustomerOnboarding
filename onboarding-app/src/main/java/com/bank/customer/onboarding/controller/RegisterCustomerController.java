@@ -30,7 +30,7 @@ public class RegisterCustomerController {
     OnboardingService onboardingService;
 
     /**
-     * The Validator.
+     * The Validator to validate request
      */
     @Autowired
     Validator validator;

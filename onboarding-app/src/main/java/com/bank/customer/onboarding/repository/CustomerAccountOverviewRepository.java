@@ -5,10 +5,17 @@ import com.bank.customer.onboarding.repository.entity.CustomerDetails;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
- * @author siddharthkorgaonkar
- * 18/06/2023
+ * The interface Customer account overview repository.
+ *
+ * @author siddharthkorgaonkar  18/06/2023
  */
 public interface CustomerAccountOverviewRepository extends JpaRepository<CustomerAccountOverview, Long> {
 
+    /**
+     * Find by username customer account overview.
+     *
+     * @param username the username
+     * @return the customer account overview
+     */
     CustomerAccountOverview findByUsername(String username);
 }

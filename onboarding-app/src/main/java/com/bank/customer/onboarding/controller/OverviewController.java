@@ -11,18 +11,21 @@ import org.springframework.web.bind.annotation.*;
 /**
  * The type Overview controller.
  *
- * @author siddharthkorgaonkar  18/06/2023
+ * @author siddharthkorgaonkar 18/06/2023
  */
 @RestController
 @RequestMapping("/bank/v1/overview")
 @RequiredArgsConstructor
 public class OverviewController {
 
+    /**
+     * The Overview service to give account overview
+     */
     @Autowired
     OverviewService overviewService;
 
     /**
-     * Gets customer.
+     * Gets customer account overview
      *
      * @param username the username
      * @return the customer

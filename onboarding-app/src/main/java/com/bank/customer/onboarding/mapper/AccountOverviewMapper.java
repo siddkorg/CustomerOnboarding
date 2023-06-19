@@ -8,17 +8,28 @@ import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 
 /**
- * @author siddharthkorgaonkar
- * 18/06/2023
+ * The interface Account overview mapper.
+ *
+ * @author siddharthkorgaonkar  18/06/2023
  */
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface AccountOverviewMapper {
 
+    /**
+     * The constant MAPPER.
+     */
     AccountOverviewMapper MAPPER = Mappers.getMapper(AccountOverviewMapper.class);
 
+    /**
+     * To map overview response details.
+     *
+     * @param customerAccountOverview the customer account overview
+     * @return the overview response details
+     */
     @Mapping(target = "accountNumber", source = "account")
     @Mapping(target = "accountType", source = "type")
     @Mapping(target = "currency", source = "currency")
     @Mapping(target = "balance", source = "balance")
+    @Mapping(target = "accountCreationTime", source = "datetime")
     OverviewResponseDetails toMAP(CustomerAccountOverview customerAccountOverview);
 }

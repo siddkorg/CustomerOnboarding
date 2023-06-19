@@ -18,7 +18,7 @@ public class OnboardingUtilTest {
         return Stream.of(
                 Arguments.of("NL", 18),
                 Arguments.of("DE", 22),
-                Arguments.of("BE",16)
+                Arguments.of("BE", 16)
         );
     }
 

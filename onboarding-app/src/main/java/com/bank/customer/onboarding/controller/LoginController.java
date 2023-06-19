@@ -21,13 +21,13 @@ import org.springframework.web.bind.annotation.*;
 public class LoginController {
 
     /**
-     * The Login service.
+     * The Login service to validate user
      */
     @Autowired
     LoginService loginService;
 
     /**
-     * The Validator.
+     * The Validator to validate request
      */
     @Autowired
     Validator validator;

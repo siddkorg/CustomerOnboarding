@@ -131,11 +131,16 @@ components:
           type: number
           description: Balance of account
           example: 4578.39
+        accountCreationTime:
+          type: string
+          description: Time when account is created
+          example: "2023-06-19T13:40:21.000Z"
       required:
         - accountNumber
         - accountType
         - currency
         - balance
+        - accountCreationTime
 
     OnboardingRequestDetails:
       title: Registration
@@ -244,5 +249,3 @@ components:
       description: The request has not been applied because it lacks valid authentication
         credentials for the target resource.
       content: { }
-
-

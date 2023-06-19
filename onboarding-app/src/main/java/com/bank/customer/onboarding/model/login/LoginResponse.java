@@ -1,21 +1,16 @@
 package com.bank.customer.onboarding.model.login;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
 /**
- * @author siddharthkorgaonkar
- * 18/06/2023
+ * The type Login response.
+ *
+ * @author siddharthkorgaonkar  18/06/2023
  */
+@Data
+@AllArgsConstructor
 public class LoginResponse {
     private String token;
 
-    public LoginResponse(String token) {
-        this.token = token;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
 }

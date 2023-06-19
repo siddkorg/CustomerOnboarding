@@ -4,8 +4,9 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- * @author siddharthkorgaonkar
- * 18/06/2023
+ * The type Onboarding response details.
+ *
+ * @author siddharthkorgaonkar  18/06/2023
  */
 @Data
 @Builder

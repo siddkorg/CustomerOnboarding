@@ -47,5 +47,5 @@ c. Create skeleton of application with spring & docker and make sure containers 
 d. Along with development, create pre-requisite script (data.sql) to showcase existing onboarded customers.
 
 
-Note : Project setup related README.md can be found  [here](./README.md)
+Note : Project setup related README.md can be found  [here](../README.md)
 

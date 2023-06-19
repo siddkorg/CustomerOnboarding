@@ -14,46 +14,67 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.sql.Timestamp;
+
 import static com.bank.customer.onboarding.util.OnboardingUtil.*;
 
 
 /**
- * @author siddharthkorgaonkar
- * 18/06/2023
+ * The type Onboarding service.
+ *
+ * @author siddharthkorgaonkar  18/06/2023
  */
 @RequiredArgsConstructor
 @Slf4j
 @Service
 public class OnboardingService {
 
+    /**
+     * The Customer details repository.
+     */
     @Autowired
     CustomerDetailsRepository customerDetailsRepository;
 
+    /**
+     * The Overview repository.
+     */
     @Autowired
     CustomerAccountOverviewRepository overviewRepository;
 
+    /**
+     * The Applicaiton properties.
+     */
     @Autowired
     ApplicaitonProperties applicaitonProperties;
 
+    /**
+     * The Onboarding util.
+     */
     @Autowired
     OnboardingUtil onboardingUtil;
 
+    /**
+     * Onboard customer onboarding response details.
+     *
+     * @param cust is representation of customer
+     * @return the onboarding response details
+     */
     public OnboardingResponseDetails onboardCustomer(OnboardingRequestDetails cust) {
 
         String username = onboardingUtil.getUniqueUserName(cust.getFamilyName(),cust.getInitials());
         String address  = onboardingUtil.getAddress(cust.getHouseNo(),cust.getPostCode(),cust.getCountry());
-        String IBAN = onboardingUtil.createIBAN(cust.getCountry());
+        String iban = onboardingUtil.createIBAN(cust.getCountry());
         String gender = StringUtils.hasText(cust.getGender())?cust.getGender():"NOT_PROVIDED";
 
         // Save customer details
-        CustomerDetails customer = new CustomerDetails(cust.getEmail(),username, cust.getAge(),gender,cust.getCountry(),address,IBAN,"ACTIVE");
+        CustomerDetails customer = new CustomerDetails(cust.getEmail(),username, cust.getAge(), gender, cust.getCountry(), address, iban,"ACTIVE");
         CustomerDetails  newCustomer =customerDetailsRepository.save(customer);
         log.info("Customer created with username [{}]", newCustomer.getUsername());
 
         // Save customer's account overview
-        CustomerAccountOverview overview = new CustomerAccountOverview(username,BALANCE,ACCOUNT_TYPE,IBAN,CURRENCY);
+        CustomerAccountOverview overview = new CustomerAccountOverview(username,BALANCE,ACCOUNT_TYPE, iban, CURRENCY, new Timestamp(System.currentTimeMillis()));
         overviewRepository.save(overview);
-        log.info("Customer Overview created");
+        log.info("Customer Account Overview created");
         return OnboardingResponseDetails.builder().password(applicaitonProperties.getPassword()).username(newCustomer.getUsername()).build();
     }
 }

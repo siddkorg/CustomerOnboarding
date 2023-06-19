@@ -1,12 +1,15 @@
 package com.bank.customer.onboarding.model.onboarding;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
- * @author siddharthkorgaonkar
- * 18/06/2023
+ * The type Onboarding request details.
+ *
+ * @author siddharthkorgaonkar 18/06/2023
  */
 @Data
+@AllArgsConstructor
 public class OnboardingRequestDetails {
 
     private String initials;
