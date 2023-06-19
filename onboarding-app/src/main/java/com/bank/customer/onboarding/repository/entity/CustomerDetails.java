@@ -24,6 +24,9 @@ public class CustomerDetails implements Serializable {
 	@Column(name = "age")
 	private int age;
 
+	@Column(name = "gender")
+	private String gender;
+
 	@Column(name = "country")
 	private String country;
 
@@ -36,10 +39,11 @@ public class CustomerDetails implements Serializable {
 	@Column(name = "status")
 	private String status;
 
-	public CustomerDetails( String email, String username, int age, String country, String address, String account, String status) {
+	public CustomerDetails( String email, String username, int age, String gender,String country, String address, String account, String status) {
 		this.email = email;
 		this.username = username;
 		this.age = age;
+		this.gender = gender;
 		this.country = country;
 		this.address = address;
 		this.account = account;

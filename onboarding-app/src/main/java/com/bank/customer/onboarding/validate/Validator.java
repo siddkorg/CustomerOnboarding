@@ -27,12 +27,12 @@ public class Validator {
     @Autowired
     ApplicaitonProperties applicaitonProperties;
 
-    private static final String EMAIL_PATTERN = "^(.+)@(.+)$";
+    String[] acceptedGenderValues = {"F", "O", "M"};
 
     public void validateLoginInputs(Login login){
 
         if(!StringUtils.hasText(login.getUsername()) || !StringUtils.hasText(login.getPassword())){
-            throw new InvalidInputException("login");
+            throw new InvalidInputException("logon");
         }
        log.info("Validated login inputs");
     }
@@ -41,19 +41,28 @@ public class Validator {
 
     public void validateOnboardingDetails(OnboardingRequestDetails c)  {
 
-        if(!StringUtils.hasText(c.getInitials()) || !StringUtils.hasText(c.getFamilyName()) || !StringUtils.hasText(c.getHouseNo()) || !StringUtils.hasText(c.getPostCode())  ){
+        if(!StringUtils.hasText(c.getInitials())  || !StringUtils.hasText(c.getFamilyName()) || !StringUtils.hasText(c.getHouseNo()) || !StringUtils.hasText(c.getPostCode())  ){
+            log.error("Invalid name or address");
+            throw new InvalidInputException("onboarding");
+        }
+
+        if(StringUtils.hasText(c.getGender()) && !(Arrays.asList(acceptedGenderValues).contains(c.getGender()))) {
+            log.error("Invalid gender value [{}]",c.getGender());
             throw new InvalidInputException("onboarding");
         }
 
         if( (c.getAge() == 0) ||c.getAge()<applicaitonProperties.getMinimumAge() ){
+            log.error("Invalid age");
             throw new BusinessValidationException(OnboardingUtil.AGE_VALIDATION);
         }
 
         if(!StringUtils.hasText(c.getCountry()) || !Arrays.asList(applicaitonProperties.getWhiteListedCountries().split(",")).contains(c.getCountry())){
+            log.error("Invalid country");
             throw new BusinessValidationException(OnboardingUtil.COUNTRY_VALIDATION);
         }
 
         if(!StringUtils.hasText(c.getEmail()) ||  !Pattern.compile(applicaitonProperties.getValidEmailPattern()).matcher(c.getEmail()).matches() ){
+            log.error("Invalid email");
             throw new InvalidInputException("onboarding");
         }
 

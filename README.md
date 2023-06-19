@@ -34,9 +34,9 @@ Through data.sql, 2 tables are pre-filled while making db container up.
 In case if you are interested to see those tables fire below commands 1 by 1.
 
 ```bash
-docker exec -it customer-onboarding_mysqldb_1 mysql -uroot -p123456 -D onboarding -e "SELECT * FROM customer_details;"
+docker exec -it customeronboarding_mysqldb_1 mysql -uroot -p123456 -D onboarding -e "SELECT * FROM customer_details;"
 
-docker exec -it customer-onboarding_mysqldb_1 mysql -uroot -p123456 -D onboarding -e "SELECT * FROM customer_account_overview;"
+docker exec -it customeronboarding_mysqldb_1 mysql -uroot -p123456 -D onboarding -e "SELECT * FROM customer_account_overview;"
 ```
 
 ## 3. Postman setup

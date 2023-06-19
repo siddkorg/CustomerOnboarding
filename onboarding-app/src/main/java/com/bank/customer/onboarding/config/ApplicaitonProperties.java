@@ -28,5 +28,4 @@ public class ApplicaitonProperties {
     public String token ;
 
 
-
 }

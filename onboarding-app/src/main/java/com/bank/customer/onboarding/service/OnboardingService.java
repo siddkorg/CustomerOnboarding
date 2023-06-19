@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import static com.bank.customer.onboarding.util.OnboardingUtil.*;
 
@@ -37,14 +38,15 @@ public class OnboardingService {
     @Autowired
     OnboardingUtil onboardingUtil;
 
-    public OnboardingResponseDetails onboardCustomer(OnboardingRequestDetails customerDetails) {
+    public OnboardingResponseDetails onboardCustomer(OnboardingRequestDetails cust) {
 
-        String username = onboardingUtil.getUniqueUserName(customerDetails.getFamilyName(),customerDetails.getInitials());
-        String address  = onboardingUtil.getAddress(customerDetails.getHouseNo(),customerDetails.getPostCode(),customerDetails.getCountry());
-        String IBAN = onboardingUtil.createIBAN(customerDetails.getCountry());
+        String username = onboardingUtil.getUniqueUserName(cust.getFamilyName(),cust.getInitials());
+        String address  = onboardingUtil.getAddress(cust.getHouseNo(),cust.getPostCode(),cust.getCountry());
+        String IBAN = onboardingUtil.createIBAN(cust.getCountry());
+        String gender = StringUtils.hasText(cust.getGender())?cust.getGender():"NOT_PROVIDED";
 
         // Save customer details
-        CustomerDetails customer = new CustomerDetails(customerDetails.getEmail(),username, customerDetails.getAge(),customerDetails.getCountry(),address,IBAN,"ACTIVE");
+        CustomerDetails customer = new CustomerDetails(cust.getEmail(),username, cust.getAge(),gender,cust.getCountry(),address,IBAN,"ACTIVE");
         CustomerDetails  newCustomer =customerDetailsRepository.save(customer);
         log.info("Customer created with username [{}]", newCustomer.getUsername());
 

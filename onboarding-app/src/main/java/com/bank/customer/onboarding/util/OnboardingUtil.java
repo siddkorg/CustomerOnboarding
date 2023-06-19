@@ -22,21 +22,31 @@ public class OnboardingUtil {
     public static final Double BALANCE = 7563.87;
 
 
-
     public String getUniqueUserName(String familyName, String initials) {
-        String currentTime = String.valueOf(System.currentTimeMillis());
-        return new StringBuilder().append(familyName, 0, 2).append(initials, 0, 2).append(currentTime).substring(8);
-
+        return new StringBuilder().append(familyName.substring(0,4)).append(initials, 0, 2).append(1111 + new Random().nextInt(9999)).toString().replaceAll("[^a-zA-Z0-9_-]", "0");
     }
 
     public String createIBAN(String country) {
-        return new StringBuilder().append(country)  // NL
-                .append(10 + new Random().nextInt(90)) // 42
-                .append(BANK_CODE)  // XYZZ
-                .append(String.valueOf(System.currentTimeMillis()), 0, 10).toString(); // random 10 digit
+        int totalLength = getOffset(country);
+        return new StringBuilder().append(country)
+                .append(10 + new Random().nextInt(90))
+                .append(BANK_CODE)
+                .append(System.currentTimeMillis())
+                .append(System.currentTimeMillis()).substring(0,totalLength);
     }
 
     public String getAddress(String houseNo, String postCode, String country) {
         return new StringBuilder().append(houseNo).append(SEPARATOR).append(postCode).append(SEPARATOR).append(country).toString();
+    }
+
+    private int getOffset(String country) {
+        if (country.equals("NL"))
+            return 18;
+        else if(country.equals("DE"))
+            return 22;
+        else if(country.equals("BE"))
+            return 16;
+        else
+            return 0;
     }
 }

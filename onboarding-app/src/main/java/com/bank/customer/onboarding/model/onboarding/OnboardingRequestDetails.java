@@ -17,6 +17,8 @@ public class OnboardingRequestDetails {
 
     private int age;
 
+    private String gender;
+
     private String country;
 
     private String postCode;
