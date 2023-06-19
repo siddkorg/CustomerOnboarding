@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author siddharthkorgaonkar  18/06/2023
  */
 @RestController
-@RequestMapping("/bank")
+@RequestMapping("/bank/v1")
 @RequiredArgsConstructor
 public class RegisterCustomerController {
 
@@ -41,11 +41,11 @@ public class RegisterCustomerController {
      * @param customerDetails the customer details
      * @return the response entity
      */
-    @PostMapping("/register")
+    @PostMapping("/customer/register")
     public ResponseEntity<OnboardingResponseDetails> onboardCustomer(@RequestBody OnboardingRequestDetails customerDetails) {
 
         validator.validateOnboardingDetails(customerDetails);
-        OnboardingResponseDetails onboardingResponseDetails =onboardingService.onboardCustomer(customerDetails);
+        OnboardingResponseDetails onboardingResponseDetails = onboardingService.onboardCustomer(customerDetails);
         return new ResponseEntity<>(onboardingResponseDetails, HttpStatus.CREATED);
     }
 

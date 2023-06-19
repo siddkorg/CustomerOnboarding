@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "a660d091-9d3d-4245-96de-f71e767a39e7",
-		"name": "_Onboarding of Customer to the bank",
+		"_postman_id": "dabbab32-c8e9-45aa-a0a8-ee4f49901fd5",
+		"name": "Customer Onboarding",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -24,7 +24,7 @@
 							"raw": "{\n\t\"username\": \"DravRS1687\",\n    \"password\": \"ThisIsTheOnlyPassword\"\n\n}"
 						},
 						"url": {
-							"raw": "http://localhost:6868/bank/logon",
+							"raw": "http://localhost:6868/bank/v1/logon",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -32,6 +32,7 @@
 							"port": "6868",
 							"path": [
 								"bank",
+								"v1",
 								"logon"
 							]
 						},
@@ -55,7 +56,7 @@
 							"raw": "{\n\t\"username\": \"KorgS01687\",\n    \"password\": \"ThisIsTheOnlyPassword\"\n\n}"
 						},
 						"url": {
-							"raw": "http://localhost:6868/bank/logon",
+							"raw": "http://localhost:6868/bank/v1/logon",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -63,6 +64,7 @@
 							"port": "6868",
 							"path": [
 								"bank",
+								"v1",
 								"logon"
 							]
 						},
@@ -86,7 +88,7 @@
 							"raw": "{\n\t\"username\": \"DravRS1687\",\n    \"password\": \"ThisIsTheOnlyPassword_wrong\"\n\n}"
 						},
 						"url": {
-							"raw": "http://localhost:6868/bank/logon",
+							"raw": "http://localhost:6868/bank/v1/logon",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -94,6 +96,7 @@
 							"port": "6868",
 							"path": [
 								"bank",
+								"v1",
 								"logon"
 							]
 						},
@@ -117,7 +120,7 @@
 							"raw": "{\n\t\"username\": \"invalidUser\",\n    \"password\": \"ThisIsTheOnlyPassword\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:6868/bank/logon",
+							"raw": "http://localhost:6868/bank/v1/logon",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -125,6 +128,7 @@
 							"port": "6868",
 							"path": [
 								"bank",
+								"v1",
 								"logon"
 							]
 						},
@@ -174,7 +178,7 @@
 							"raw": "{\n\t\"initials\": \"NCsss\",\n    \"familyName\": \"Chaudharisdf\",\n    \"email\": \"ncsdfsd@gmail.com\",\n    \"age\": 19,\n    \"gender\": \"O\",\n    \"country\": \"DE\",\n    \"postCode\": \"1312PC\",\n    \"houseNo\": \"35\"\n   \n}"
 						},
 						"url": {
-							"raw": "http://localhost:6868/bank/register",
+							"raw": "http://localhost:6868/bank/v1/customer/register",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -182,6 +186,8 @@
 							"port": "6868",
 							"path": [
 								"bank",
+								"v1",
+								"customer",
 								"register"
 							]
 						},
@@ -205,7 +211,7 @@
 							"raw": "{\n\t\"initials\": \"S.D\",\n    \"familyName\": \"Korgaonkar\",\n    \"email\": \"sidd.korg@gmail.com\",\n    \"age\": 14,\n    \"country\": \"DE\",\n    \"postCode\": \"1312PC\",\n    \"houseNo\": \"35\"\n   \n}"
 						},
 						"url": {
-							"raw": "http://localhost:6868/bank/register",
+							"raw": "http://localhost:6868/bank/v1/customer/register",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -213,6 +219,8 @@
 							"port": "6868",
 							"path": [
 								"bank",
+								"v1",
+								"customer",
 								"register"
 							]
 						},
@@ -236,7 +244,7 @@
 							"raw": "{\n\t\"initials\": \"Johny\",\n    \"familyName\": \"Jackson\",\n    \"email\": \"johny@gmail.com\",\n    \"age\": 49,\n    \"country\": \"IN\", \n    \"postCode\": \"1312PC\",\n    \"houseNo\": \"35\"\n   \n}"
 						},
 						"url": {
-							"raw": "http://localhost:6868/bank/register",
+							"raw": "http://localhost:6868/bank/v1/customer/register",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -244,6 +252,8 @@
 							"port": "6868",
 							"path": [
 								"bank",
+								"v1",
+								"customer",
 								"register"
 							]
 						},
@@ -295,7 +305,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:6868/bank/overview/DravRS1687",
+							"raw": "http://localhost:6868/bank/v1/overview/DravRS1687",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -303,6 +313,7 @@
 							"port": "6868",
 							"path": [
 								"bank",
+								"v1",
 								"overview",
 								"DravRS1687"
 							]
@@ -330,7 +341,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:6868/bank/overview/KorgS01687",
+							"raw": "http://localhost:6868/bank/v1/overview/KorgS01687",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -338,6 +349,7 @@
 							"port": "6868",
 							"path": [
 								"bank",
+								"v1",
 								"overview",
 								"KorgS01687"
 							]
@@ -365,7 +377,7 @@
 							"raw": "{\n\t\"initials\": \"S.D\",\n    \"familyName\": \"Korgaonkar\",\n    \"email\": \"sidd.korg@gmail.com\",\n    \"age\": 19,\n    \"country\": \"NL\",\n    \"postCode\": \"1312PC\",\n    \"houseNo\": \"35\"\n   \n}"
 						},
 						"url": {
-							"raw": "http://localhost:6868/bank/overview/dummy",
+							"raw": "http://localhost:6868/bank/v1/overview/dummy",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -373,6 +385,7 @@
 							"port": "6868",
 							"path": [
 								"bank",
+								"v1",
 								"overview",
 								"dummy"
 							]

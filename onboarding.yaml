@@ -1,0 +1,248 @@
+openapi: 3.0.0
+info:
+  title: Onboarding
+  description: Customer Onboarding automation
+    This API's allow user to onboard through API's
+    Onboarded customer eligible to login to Bank and can see AccountOverview
+  contact:
+    name:  contact@bank.nl
+    email: contact@bank.nl
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:6868/
+    description: Local server
+
+
+paths:
+
+  /bank/v1/:
+    post:
+      tags:
+        - Login
+      summary: Validate customer against password and established session
+      description: Validate customer and established session
+      operationId: customerLogin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Login'
+        required: true
+      responses:
+        200:
+          description: The request has succeeded (for eligible and non-eligible).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+        400:
+          $ref: "#/components/responses/BadRequest"
+
+        500:
+          $ref: "#/components/responses/InternalServerError"
+
+  /bank/v1/customer/register:
+    post:
+      tags:
+        - Registration
+      summary: Onboard customer with his details
+      description: Validate customer details and onboard him automatically
+      operationId: onboardCustomer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OnboardingRequestDetails'
+        required: true
+      responses:
+        201:
+          description: The request has succeeded and Customer created Successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegisterResponse'
+        400:
+          $ref: "#/components/responses/BadRequest"
+
+        500:
+          $ref: "#/components/responses/InternalServerError"
+
+  /bank/v1/overview/{username}:
+    get:
+      tags:
+        - Account Overview
+      summary: Get overview of customer account eg.accountnumber, type, currency, balance
+      description: Get overview of customer's account.
+        Details fetched from db
+      operationId: getCustomerAccountDetails
+      parameters:
+        - in: path
+          name: username
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: The request has succeeded and Customer created Successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountOverview'
+        404:
+          $ref: "#/components/responses/NotFound"
+
+        500:
+          $ref: "#/components/responses/InternalServerError"
+
+components:
+  schemas:
+    Login:
+      title: Login
+      type: object
+      properties:
+        username:
+          type: string
+          description: Unique id created at the time of registration
+        password:
+          type: string
+          description: Password for login
+      required:
+        - username
+        - password
+
+    AccountOverview:
+      title: Login
+      type: object
+      properties:
+        accountNumber:
+          type: string
+          description: Unique IBAN created at the time of registration
+          example: NL42 BANK 1234567890
+        accountType:
+          type: string
+          description: Saving account created by default
+          example: saving
+        currency:
+          type: string
+          description: EUR is default currency
+          example: EUR
+        balance:
+          type: number
+          description: Balance of account
+          example: 4578.39
+      required:
+        - accountNumber
+        - accountType
+        - currency
+        - balance
+
+    OnboardingRequestDetails:
+      title: Registration
+      type: object
+      properties:
+        initials:
+          type: string
+          description: Initials of the name
+          example: S.D
+        familyName:
+          type: string
+          description: Family name
+          example: Jackson
+        email:
+          type: string
+          description: email
+          example: jack@domain.com
+          pattern: '^\d{3}-\d{2}-\d{4}$'
+
+        age:
+          type: integer
+          description: Age of the customer. Minimum age should be 18
+          example: 25
+
+        gender:
+          $ref: '#/components/schemas/gender'
+
+        country:
+          type: string
+          description: Country of customer with Alpha -2 standards, only NL/DE/BE customer can user these API
+
+          example: NL
+
+        postCode:
+          type: string
+          description: Area code of the address
+          example: 1234PL
+        houseNo:
+          type: string
+          description: Number of house
+          example: 23-A
+      required:
+        - username
+        - familyName
+        - email
+        - age
+
+
+    LoginResponse:
+      type: object
+      properties:
+        token:
+          type: string
+          description: this is the unique token represent the session
+
+    RegisterResponse:
+      $ref: '#/components/schemas/Login'
+
+
+    gender:
+      type: string
+      enum:
+        - M
+        - F
+        - O
+      description: >
+        defination:
+        M -> Male
+        F -> Female
+        O -> Other
+
+    ValidationResult:
+      title: Validation Result
+      type: object
+      properties:
+        errorCode:
+          type: string
+          example: "ERR_0001"
+          description: "Unique error code"
+        message:
+          type: string
+          example: "Error due to wrong inputs"
+          description: "Error message"
+
+  responses:
+    NoContent:
+      description: The server has No content to show.
+    Accepted:
+      description: The server has accepted the request.
+
+    BadRequest:
+      description: The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing). Please validate the inputs with Rest specification
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ValidationResult'
+
+
+    Forbidden:
+      description: The server understood the request but refuses to authorize it.
+    InternalServerError:
+      description: The server encountered an unexpected condition that prevented it from fulfilling the request.
+    NotFound:
+      description: The origin server did not find a current representation for the target resource or is not willing to disclose that one exists.
+    Unauthorized:
+      description: The request has not been applied because it lacks valid authentication
+        credentials for the target resource.
+      content: { }
+
+

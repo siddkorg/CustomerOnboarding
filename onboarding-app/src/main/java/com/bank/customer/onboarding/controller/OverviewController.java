@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
  * @author siddharthkorgaonkar  18/06/2023
  */
 @RestController
-@RequestMapping("/bank/overview")
+@RequestMapping("/bank/v1/overview")
 @RequiredArgsConstructor
 public class OverviewController {
 
@@ -29,10 +29,10 @@ public class OverviewController {
      */
     @RequestMapping(value = {"/{username}"}, method = RequestMethod.GET)
     @ResponseBody
-    public ResponseEntity<OverviewResponseDetails> getCustomer(@PathVariable(value = "username", required = true) String username) {
+    public ResponseEntity<OverviewResponseDetails> getCustomerAccountDetails(@PathVariable(value = "username", required = true) String username) {
 
         OverviewResponseDetails overviewResponseDetails = overviewService.getCustomerAccountDetails(username);
-        return new ResponseEntity<>(overviewResponseDetails, HttpStatus.CREATED);
+        return new ResponseEntity<>(overviewResponseDetails, HttpStatus.OK);
     }
 
 }
