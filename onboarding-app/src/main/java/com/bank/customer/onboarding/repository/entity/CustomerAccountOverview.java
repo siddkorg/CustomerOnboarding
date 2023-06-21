@@ -1,11 +1,10 @@
 package com.bank.customer.onboarding.repository.entity;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.Date;
+
 
 /**
  * The type Customer account overview.

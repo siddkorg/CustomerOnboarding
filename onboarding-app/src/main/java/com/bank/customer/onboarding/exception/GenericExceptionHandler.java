@@ -69,7 +69,7 @@ public class GenericExceptionHandler extends ResponseEntityExceptionHandler {
      * @return the response entity
      */
     @ExceptionHandler(value = {CustomerAlreadyExistException.class})
-    protected ResponseEntity<ValidationResult> notFound(CustomerAlreadyExistException exception) {
+    protected ResponseEntity<ValidationResult> customerAlreadyExist(CustomerAlreadyExistException exception) {
         log.error("Exception: [{}]", exception.getMessage());
         ValidationResult validationResult = buildErrorResponse(ErrorCodeUtil.CUSTOMER_ALREADY_EXIST);
         return ResponseEntity.status(HttpStatus.CONFLICT).body(validationResult);
@@ -82,7 +82,7 @@ public class GenericExceptionHandler extends ResponseEntityExceptionHandler {
      * @return the response entity
      */
     @ExceptionHandler(value = {BusinessValidationException.class})
-    protected ResponseEntity<ValidationResult> badRequest(BusinessValidationException exception) {
+    protected ResponseEntity<ValidationResult> businessValidations(BusinessValidationException exception) {
         log.error("Exception due to business validation reason: [{}]", exception.getMessage());
         ErrorCodeUtil errorCodeUtil = ErrorCodeUtil.UNKNOWN;
         if (exception.getMessage().equals(OnboardingUtil.AGE_VALIDATION)) {

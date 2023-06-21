@@ -62,7 +62,7 @@ public class OnboardingUtil {
      * @return the string
      */
     public String createIBAN(String country) {
-        int totalLength = getOffset(country);
+        int totalLength = getIbanLengthByCountry(country);
         return new StringBuilder().append(country)
                 .append(10 + new Random().nextInt(90))
                 .append(BANK_CODE)
@@ -82,7 +82,7 @@ public class OnboardingUtil {
         return new StringBuilder().append(houseNo).append(SEPARATOR).append(postCode).append(SEPARATOR).append(country).toString();
     }
 
-    private int getOffset(String country) {
+    private int getIbanLengthByCountry(String country) {
         if (country.equals("NL"))
             return 18;
         else if(country.equals("DE"))
