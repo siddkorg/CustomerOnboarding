@@ -1,6 +1,7 @@
 package com.bank.customer.onboarding.model.onboarding;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 /**
@@ -10,6 +11,7 @@ import lombok.Data;
  */
 @Data
 @AllArgsConstructor
+@Builder
 public class OnboardingRequestDetails {
 
     private String initials;

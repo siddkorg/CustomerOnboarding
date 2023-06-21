@@ -48,7 +48,7 @@ public class CustomerDetails implements Serializable {
 	 *
 	 * @param email    the email
 	 * @param username the username
-	 * @param age      the age
+	 * @param dob      the dob
 	 * @param gender   the gender
 	 * @param country  the country
 	 * @param address  the address
