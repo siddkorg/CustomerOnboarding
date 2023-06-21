@@ -175,7 +175,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"initials\": \"NCsss\",\n    \"familyName\": \"Chaudharisdf\",\n    \"email\": \"ncsdfsd@gmail.com\",\n    \"dob\": \"1987-06-19\",\n    \"gender\": \"O\",\n    \"country\": \"DE\",\n    \"postCode\": \"1312PC\",\n    \"houseNo\": \"35\"\n   \n}"
+							"raw": "{\n\t\"initials\": \"NCsss\",\n    \"familyName\": \"Chaudharisdf\",\n    \"email\": \"ncsdfsd@gmail.com\",\n    \"dob\": \"1987-08-11\",\n    \"gender\": \"O\",\n    \"country\": \"DE\",\n    \"postCode\": \"1312PC\",\n    \"houseNo\": \"35\"\n   \n}"
 						},
 						"url": {
 							"raw": "http://localhost:6868/bank/v1/customer/register",
