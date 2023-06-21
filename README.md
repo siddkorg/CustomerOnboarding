@@ -1,4 +1,4 @@
-# Automate Customer Onboarding process (Docker Compose Spring Boot , Maven , MySQL, JPA )
+# Automate Customer Onboarding process (Docker Compose, Spring Boot , Maven , MySQL, JPA )
 
 
 ### 1. Prerequisite - Docker installation
